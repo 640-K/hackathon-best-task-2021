@@ -1,14 +1,18 @@
-import React from "react";
-import Main from "./Main/Main";
-import Navbar from "./Navbar";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import React from "react"
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
+import Navbar from "./Navbar"
+import Main from "./Main/Main"
+import Login from "./Auth/Login/Login"
+import Register from "./Auth/Register/Register"
 
-function App() {
+const App = () => {
     return (
         <Router>
             <Navbar/>
             <Routes>
-                <Route path="/" element={<Main/>}/>
+                <Route exact path="/" element={<Main/>}/>
+                <Route exact path="/login" element={<Login/>}/>
+                <Route exact path="/register" element={<Register/>}/>
             </Routes>
         </Router>
     );
