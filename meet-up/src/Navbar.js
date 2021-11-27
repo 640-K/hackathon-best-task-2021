@@ -17,12 +17,10 @@ function Navbar() {
                         <NavLink exact to="/catalog" className="nav-link">Catalog</NavLink>
                     </li>
                     <li className="nav-item active">
-                        <NavLink exact to="/cart" className="nav-link">Cart
-                        </NavLink>
+                        <NavLink exact to="/cart" className="nav-link">Cart</NavLink>
                     </li>
                 </ul>
                 <ul className="navbar-nav ml-auto">
-
                     <li className="nav-item mr-2">
                         <NavLink className="btn btn-outline-secondary" to="/login" type="button">Log in</NavLink>
                     </li>
@@ -30,9 +28,7 @@ function Navbar() {
                         <NavLink className="btn btn-primary" to="/register" type="button">Register</NavLink>
                     </li>
                 </ul>
-
             </div>
-
         </nav>
     );
 }
