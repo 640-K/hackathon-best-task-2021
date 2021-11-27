@@ -21,19 +21,20 @@ function Navbar() {
                         </NavLink>
                     </li>
                 </ul>
-                        <ul className="navbar-nav ml-auto">
+                <ul className="navbar-nav ml-auto">
 
-                            <li className="nav-item mr-2">
-                                <NavLink className="btn btn-outline-secondary" to="/login" type="button">Log in</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="btn btn-primary" to="/register" type="button">Register</NavLink>
-                            </li>
-                        </ul>
+                    <li className="nav-item mr-2">
+                        <NavLink className="btn btn-outline-secondary" to="/login" type="button">Log in</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="btn btn-primary" to="/register" type="button">Register</NavLink>
+                    </li>
+                </ul>
 
             </div>
 
         </nav>
     );
 }
+
 export default Navbar;
