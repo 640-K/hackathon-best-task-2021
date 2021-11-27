@@ -1,7 +1,7 @@
 import React from "react";
 // import Main from "./Main/Main";
 import Navbar from "./Navbar";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 // import background from "./img/background.png";
 import PrePage from "./PrePage"
 import Footer from "./Footer"

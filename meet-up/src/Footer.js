@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
     return(
-        <footer className="text-center text-lg-start bg-light text-muted mt-5 pf position-fixed w-100 bottom-0">
+        <footer className="text-center text-lg-start bg-light text-muted mt-5 mt-50">
             <section
                 className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
                 <div className="me-5 d-none d-lg-block">
@@ -25,8 +25,7 @@ function Footer() {
                                 Meet-Up!
                             </h6>
                             <p>
-                                Article nor prepare chicken you him now. Shy merits say advice ten before lovers innate add.
-                                She cordially behaviour can attempted estimable.
+                                Simple web application to help people diversify their daily lives
                             </p>
                         </div>
 
