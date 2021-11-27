@@ -1,60 +1,36 @@
-import React from "react";
-import {Formik} from "formik";
-import * as Yup from 'yup';
-import getInput from "./Input";
-import location from "./Location"
+import React from 'react'
+import { Formik } from 'formik'
+import { getInput } from '../Forms/Input'
+import { createMeetValidationsSchema } from '../Forms/Validate'
+import location from './Location'
 
-function Form() {
+const MeetCreate = () => (
+    <div className="col-lg-6 m-auto" style={{maxWidth: '500px'}}>
+        <Formik initialValues={{
+            meetName: '',
+            description: '',
+            auto_address: ''
+        }} validateOnBlur validationSchema={createMeetValidationsSchema} onSubmit={values => console.log(values)}>
+            {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty,setFieldValue}) => (
+                <div>
+                    <h1 className="text-center">Create Event</h1>
+                    <div className="mb-3">
+                        {getInput("meetName", "", "text", "Meet name", handleChange, handleBlur, values, errors, touched)}
+                    </div>
+                    <div className="mb-3">
+                        {location("auto_address",handleChange, handleBlur, values, errors, touched,setFieldValue)}
+                    </div>
+                    <div className="mb-3">
+                        {getInput("description", "", "text", "Description", handleChange, handleBlur, values, errors, touched)}
+                    </div>
+                    <hr className="mb-4"/>
+                    <div className="d-flex justify-content-center">
+                        <button className="btn btn-primary btn-lg-6 btn-block" type="submit" onClick={handleSubmit}>Submit</button>
+                    </div>
+                </div>
+            )}
+        </Formik>
+    </div>
+);
 
-
-    const validationsSchema = Yup.object().shape({
-        meetName: Yup.string().typeError('Must be a string.')
-            .required('Valid first Meet Name is required.'),
-        description: Yup.string().typeError('Must be a string.')
-            .required('Please enter meet description.'),
-        auto_address: Yup.string().typeError('Must be a string.')
-            .required('Please enter meet address.'),
-    });
-
-    return (
-        <div className="col-lg-6 m-auto">
-            <Formik initialValues={{
-                meetName: '',
-                description: '',
-                auto_address: '',
-            }} validateOnBlur validationSchema={validationsSchema}
-                    onSubmit={(values) => console.log(values)}>
-                {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty,setFieldValue}) => (
-                    <div>
-                        <div className="row">
-                            <div className="col-lg-6 m-auto mb-3">
-                                {getInput("meetName", "Meet name", "text", "", handleChange, handleBlur, values, errors, touched)}
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-lg-6 m-auto mb-3">
-                                {location("auto_address",handleChange, handleBlur, values, errors, touched,setFieldValue)}
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-lg-6 m-auto mb-3">
-                                {getInput("description", "Description", "text", "", handleChange, handleBlur, values, errors, touched)}
-                            </div>
-                        </div>
-
-                        <hr className="col-lg-6 m-auto mb-4"/>
-
-                        <div className="col-lg-6 m-auto">
-                            <button onClick={handleSubmit}
-                                className="btn btn-primary btn-lg-6 btn-block" type="submit">Submit
-                            </button>
-                        </div>
-                    </div>)}
-            </Formik>
-        </div>
-    );
-}
-
-export default Form;
+export default MeetCreate;

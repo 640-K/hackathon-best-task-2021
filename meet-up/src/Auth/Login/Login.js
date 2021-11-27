@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Formik } from 'formik'
-import { loginValidationsSchema } from '../Validate'
-import { getInput } from '../Input'
+import { loginValidationsSchema } from '../../Forms/Validate'
+import { getInput } from '../../Forms/Input'
 
 const Login = props => {
     return (
