@@ -16,7 +16,7 @@ export const registerValidationsSchema = Yup.object().shape({
         .required('Valid phone number is required.'),
     password: Yup.string()
         .typeError('Must be a string.')
-        .matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*?[0-9]){8,}$/, "Must contain 8 characters: uppercase, lowercase and number")
+        .matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*?[0-9]){8,}$/, 'Must contain 8 characters: uppercase, lowercase and number')
         .required('Please enter a password.'),
     confirmPassword: Yup.string()
         .typeError('Must be a string.')
