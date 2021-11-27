@@ -6,7 +6,7 @@ import Feed from "./Feed/Feed"
 import Footer from "./Navigation/Footer"
 import Login from "./Auth/Login/Login"
 import Register from "./Auth/Register/Register"
-import MeetCreate from './MeetCreate/MeetCreate'
+import MeetCreate from "./MeetCreate/MeetCreate"
 
 const App = () => (
     <Router>
