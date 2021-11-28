@@ -41,24 +41,25 @@ const SUPPORTED_FORMATS = [
 ];
 
 export const createEventValidationsSchema = Yup.object().shape({
-    meetName: Yup.string().typeError('Must be a string.')
+    meetName: Yup.string()
+        .defaulttypeError('Must be a string.')
         .required('Valid first Meet Name is required.'),
-    description: Yup.string().typeError('Must be a string.')
+    description: Yup.string()
+        .typeError('Must be a string.')
         .required('Please enter meet description.'),
-    auto_address: Yup.string().typeError('Must be a string.')
+    auto_address: Yup.string()
+        .typeError('Must be a string.')
         .required('Please enter meet address.'),
     file: Yup.mixed()
         .required("A file is required")
-        .test(
-            "fileSize",
-            "File too large",
-            value => value && value.size <= FILE_SIZE
-        )
-        .test(
-            "fileFormat",
-            "Unsupported Format",
-            value => value && SUPPORTED_FORMATS.includes(value.type)
-        ),
+        .test("fileSize", "File too large", value => value && value.size <= FILE_SIZE)
+        .test("fileFormat", "Unsupported Format", value => value && SUPPORTED_FORMATS.includes(value.type)),
     activities: Yup.array()
         .min(3,"choose min 3 activities")
+});
+
+export const addressValidationsSchema = Yup.object().shape({
+    auto_address: Yup.string()
+        .typeError('Must be a string.')
+        .required('Please enter meet address.'),
 });
