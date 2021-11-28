@@ -8,7 +8,7 @@ import Login from "./Auth/Login/Login"
 import Register from "./Auth/Register/Register"
 import MeetCreate from './MeetCreate/MeetCreate'
 import {onAuthStateChanged} from "firebase/auth";
-import {auth} from "./Firebase/main";
+import {auth, getTokens, app} from "./Firebase/main";
 import Loader from "./loader"
 function App() {
     let [loader, setLoader] = useState(true);
@@ -26,12 +26,14 @@ function App() {
         })
 
     }, [])
+
     if(loader)
         return <Loader />
 
     return (
     <Router>
         <Navbar name={name}/>
+
         <Routes>
             <Route exact path="/" element={<Main/>}/>
             <Route exact path="/feed" element={<Feed/>}/>

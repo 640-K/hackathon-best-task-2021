@@ -1,4 +1,5 @@
 import {initializeApp} from "firebase/app";
+import {getFirestore, getDoc,getDocs, where, setDoc, collection, doc, query} from "firebase/firestore";
 import {getStorage, ref, uploadBytes, getDownloadURL} from "firebase/storage";
 import {
     getAuth,
@@ -12,16 +13,37 @@ import {
     createUserWithEmailAndPassword,
     sendPasswordResetEmail
 } from "firebase/auth";
+import {getMessaging, getToken, onMessage, } from 'firebase/messaging';
 import firebaseConfig from "./config";
+
+let CryptoJS = require("crypto-js");
 
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app)
 const storage = getStorage(app)
+const messaging = getMessaging(app);
+const db = getFirestore(app);
+
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
+const getTokens = () => {
+  return getToken(messaging,{vapidKey: 'BHTmol5rVjBkxYrfCoZXqHRYbsqY_5ox7P04YRp24CRADPAAps88NUy7YLhNzEscuIMSv2k3TObt3KTJ2r8HGS4'}).then((currentToken) => {
+    if (currentToken) {
+      console.log('current token for client: ', currentToken);
+      // Track the token -> client mapping, by sending to backend server
+      // show on the UI that permission is secured
+    } else {
+      console.log('No registration token available. Request permission to generate one.');
+      // shows on the UI that permission is required
+    }
+  }).catch((err) => {
+    console.log('An error occurred while retrieving token. ', err);
+    // catch error while creating client token
+  });
+}
 
 async function facebookLogin() {
     return await signInWithPopup(auth, facebookProvider)
@@ -147,5 +169,68 @@ async function logOut() {
 }
 
 
+onMessage(messaging, function (payload) {
+  try {  //try???
+    console.log('Message received. ', payload);
 
-export {facebookLogin, googleLogin, githubLogin, logOut, register, login, restore, auth}
+    const noteTitle = payload.notification.title;
+    const noteOptions = {
+      body: payload.notification.body,
+      icon: "typewriter.jpg", //this is my image in my public folder
+    };
+
+    console.log("title ", noteTitle, " ", payload.notification.body);
+    //var notification = //examples include this, seems not needed
+    new Notification(noteTitle, noteOptions).onclick = function (event) {
+      // console.log(event);
+      // console.log(payload.notification.click_action);
+      if(payload && payload.notification &&  payload.notification.click_action &&  payload.notification.click_action.length > 0)
+      {
+        window.open(payload.notification.click_action, '_blank');
+      }
+      this.close();
+    };
+  }
+  catch (err) {
+    console.log('Caught error: ', err);
+  }
+});
+
+async function saveMeet(data){
+    try {
+        var file_hash = CryptoJS.MD5(CryptoJS.enc.Latin1.parse(data['file']));
+        var file_md5 = file_hash.toString(CryptoJS.enc.Hex)
+        const metadata = {
+            contentType: 'image/jpeg'
+        };
+        const storageRef = await ref(storage, "img/" + file_md5 + ".jpeg");
+        return uploadBytes(storageRef, data["file"], metadata).then((snapshot) => {
+                return getDownloadURL(snapshot.ref).then((downloadURL) => {
+                    data["file"] = downloadURL
+                    data["user"] = auth.currentUser.uid
+                     var meet_hash = CryptoJS.MD5(JSON.stringify(data).toString());
+                    var meet_md5 = meet_hash.toString(CryptoJS.enc.Hex)
+                    setDoc(doc(collection(db,"meets"), meet_md5), data);
+                    return meet_md5
+                });
+            });
+    } catch (error) {
+        console.log(error)
+        return false
+    }
+}
+
+
+async function getMeets(location){
+    try {
+        let meetsRef = collection(db,"meets")
+        const q = query(meetsRef, where("auto_address", "==", location));
+        return getDocs(q).then(docs=>docs.docs.map(document=>document.data()))
+    } catch (error) {
+        console.log(error)
+        return false
+    }
+}
+
+
+export {facebookLogin, googleLogin, githubLogin, logOut, register, login, restore,getTokens,saveMeet,messaging, app, auth,getMeets}
