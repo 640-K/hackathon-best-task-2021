@@ -1,6 +1,6 @@
 import React from "react"
 import './Event.css'
-
+import {subscribe} from "../Firebase/main";
 /*
 {
     "meetName": "erger",
@@ -44,6 +44,9 @@ const Event = props => {
                           data-bs-target={"#collapse" + props.id} aria-expanded="false"
                           aria-controls={"collapse" + props.id}>
                       Show More
+                  </button>
+                  <button className="btn btn-outline-primary ms-3" onClick={()=>{subscribe(props.event.id)}} type="button">
+                      Subscribe
                   </button>
               </p>
           </div>

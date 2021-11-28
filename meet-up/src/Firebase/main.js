@@ -234,13 +234,16 @@ async function subscribe(id) {
     try {
         const docRef = doc(db, "meets", id);
         return await getDoc(docRef).then((data) => {
+            console.log(data.data())
             let who = data.data()['who']
+
             if (who.includes(auth.currentUser.uid) === true || data.data()['user'] === auth.currentUser.uid)
                 return "You are subscribe yet."
             who.push(auth.currentUser.uid)
             return updateDoc(docRef, {
                 who: who
             }).then(_ => {
+                getUserToken(data.data()['user'])
                 return true
             });
         })
@@ -256,8 +259,10 @@ async function saveToken(){
 
 function getUserToken(uid){
     return getDoc(doc(collection(db, "alerts"), uid)).then(data=>{
-        if(data.data())
+        if(data.data()) {
+            fetch('http://127.0.0.1:3001/firebase/notification/' + data.data()['token'])
             return data.data()['token']
+        }
         return null
     })
 }
