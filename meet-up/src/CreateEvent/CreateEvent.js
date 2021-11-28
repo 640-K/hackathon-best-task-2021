@@ -7,6 +7,7 @@ import {saveMeet, getMeets} from '../Firebase/main'
 import location from './Location'
 import picture from './Picture'
 import './CreateEvent.css'
+import {saveMeet, getMeets, subscribe} from '../Firebase/main'
 
 const CreateEvent = () => {
     const [act, setAct] = useState([]);
@@ -17,8 +18,12 @@ const CreateEvent = () => {
         console.log(d)
     })
 
-    return (
-        <div id="create-event" className="col-lg-6" style={{maxWidth: '500px', height: '100%', margin: '15% auto'}}>
+    subscribe('c7d153c4edaba3424a51f1c66dcf0bb4').then(data => {
+        console.log(data)
+    })
+
+    return(
+        <div className="col-lg-6 m-auto" style={{maxWidth: '500px'}}>
             <Formik initialValues={{
                 meetName: '',
                 description: '',

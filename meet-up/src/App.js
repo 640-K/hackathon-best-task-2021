@@ -19,12 +19,12 @@ const App = () => {
     useEffect(() => {
         onAuthStateChanged(auth, user => {
             if (user) {
-                console.log(user);
-                setName(user.displayName);
-                setLoader(false);
-            } else {
-                setLoader(false);
-            }
+                setName(user.displayName)
+                setLoader(false)
+                registerServiceWorker()
+
+            } else
+                setLoader(false)
         })
     }, [])
 
