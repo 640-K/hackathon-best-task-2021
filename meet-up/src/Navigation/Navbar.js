@@ -40,12 +40,13 @@ const Navbar = ({name}) => {
                     </div> : <h1>Menu</h1>}
                 <ul>
                     <li><hr className='mb-4'/></li>
-                    <li><NavLink exact to="/" /*className="btn btn-outline-dark"*/>Home</NavLink></li>
-                    <li><NavLink exact to="/feed" /*className="btn btn-outline-dark"*/>Feed</NavLink></li>
-                    <li><NavLink exact to="/create" /*className="btn btn-outline-dark"*/>Create Event</NavLink></li>
+                    <li><NavLink exact to="/">Home</NavLink></li>
+                    <li><NavLink exact to="/feed">Feed</NavLink></li>
+                    <li><NavLink exact to="/create">Create Event</NavLink></li>
                     <li><hr className='mb-4'/></li>
                     {name /* isUserLoggedIn */ ?
                         <React.Fragment>
+                            <li><NavLink exact to="/">Your Events</NavLink></li>
                             <li><button style={{
                                 background: 'none',
                                 color: 'inherit',
