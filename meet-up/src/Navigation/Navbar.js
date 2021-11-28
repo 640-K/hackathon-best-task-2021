@@ -1,8 +1,10 @@
 import React from "react"
 import {NavLink} from 'react-router-dom';
+import {logOut, auth} from "../Firebase/main";
 
-const Navbar = () => (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+function Navbar({name}){
+
+    return (<nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
             <i className="fas fa-hands-helping me-1" style={{color: "#007bff"}}/>
             Meet-Up!
@@ -19,17 +21,31 @@ const Navbar = () => (
                         <NavLink exact to="/create" className="nav-link">Create Meet</NavLink>
                     </li>
                 </ul>
-                <ul className="navbar-nav ml-auto">
-                    <li className="nav-item me-2">
-                        <NavLink className="btn btn-outline-secondary" to="/login" type="button">Log in</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="btn btn-primary" to="/register" type="button">Register</NavLink>
-                    </li>
-                </ul>
+                {
+                    name?
+                       <ul className="navbar-nav ml-auto">
+                            <li className="nav-item mr-2">
+                                <span className="navbar-text">
+                                  Hello, {name}
+                                </span>
+                                <img src={auth.currentUser.photoURL} className="rounded-circle ms-2 me-2" style={{"height":"38.24px"}}/>
+                            </li>
+                            <li className="nav-item mr-2">
+                                <button className="btn btn-outline-secondary" onClick={logOut} type="button">Log out</button>
+                            </li>
+                        </ul> :
+                    <ul className="navbar-nav ml-auto">
+                        <li className="nav-item me-2">
+                            <NavLink className="btn btn-outline-secondary" to="/login" type="button">Log in</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="btn btn-primary" to="/register" type="button">Register</NavLink>
+                        </li>
+                    </ul>
+                }
             </div>
         </div>
     </nav>
-);
+)}
 
 export default Navbar;

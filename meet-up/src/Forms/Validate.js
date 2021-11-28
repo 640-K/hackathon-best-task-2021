@@ -11,12 +11,9 @@ export const registerValidationsSchema = Yup.object().shape({
         .typeError('Must be a string.')
         .email('Please enter a valid email address.')
         .required('Valid email is required.'),
-    phone: Yup.string()
-        .matches('/^\\+380[1-9]{9}$/', 'Invalid phone format.')
-        .required('Valid phone number is required.'),
     password: Yup.string()
         .typeError('Must be a string.')
-        .matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*?[0-9]){8,}$/, 'Must contain 8 characters: uppercase, lowercase and number')
+        .matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", 'Must contain 8 characters: uppercase, lowercase and number')
         .required('Please enter a password.'),
     confirmPassword: Yup.string()
         .typeError('Must be a string.')
@@ -28,11 +25,12 @@ export const registerValidationsSchema = Yup.object().shape({
 
 export const loginValidationsSchema = Yup.object().shape({
     email: Yup.string()
-        .email('Please enter a valid email address.')
         .typeError('Must be a string.')
+        .email('Please enter a valid email address.')
         .required('Valid email is required.'),
     password: Yup.string()
         .typeError('Must be a string.')
+        .matches('/^(?=.*[A-Z])(?=.*[a-z])(?=.*?[0-9]){8,}$/', 'Must contain 8 characters: uppercase, lowercase and number')
         .required('Please enter a password.'),
 })
 

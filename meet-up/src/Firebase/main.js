@@ -29,8 +29,7 @@ async function facebookLogin() {
             const user = result.user;
             const credential = FacebookAuthProvider.credentialFromResult(result);
             const accessToken = credential.accessToken;
-            console.log(user)
-            if(user.photoURL.includes('firebasestorage') === -1) {
+            if(user.photoURL.includes('firebasestorage')===false) {
                 console.log(123)
                 uploadBlob(user.photoURL + "?access_token=" + accessToken, user.uid).then(url => {
                     updateProfile(user, {photoURL: url})
@@ -87,12 +86,16 @@ async function uploadBlob(url, path) {
 }
 
 async function register(email, password, firstName, lastName) {
+    console.log(email)
     return await createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            updateProfile(userCredential.user, {
-                displayName: firstName + " " + lastName
-            });
-            return userCredential.user
+            return updateProfile(userCredential.user, {
+                displayName: firstName + " " + lastName,
+                photoURL: "https://firebasestorage.googleapis.com/v0/b/meet-up-hackathon.appspot.com/o/img%2Fdefault.png?alt=media&token=51c43917-e70c-45b6-83d9-a417c9cfb025"
+            }).then(a=>{
+                return userCredential.user
+            })
+
         })
         .catch((error) => {
             switch (error.message) {
