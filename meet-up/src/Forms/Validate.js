@@ -34,6 +34,11 @@ export const loginValidationsSchema = Yup.object().shape({
         .required('Please enter a password.'),
 })
 
+const FILE_SIZE = 160 * 1024;
+const SUPPORTED_FORMATS = [
+  "image/jpeg",
+  "image/png"
+];
 export const createMeetValidationsSchema = Yup.object().shape({
     meetName: Yup.string().typeError('Must be a string.')
         .required('Valid first Meet Name is required.'),
@@ -41,4 +46,18 @@ export const createMeetValidationsSchema = Yup.object().shape({
         .required('Please enter meet description.'),
     auto_address: Yup.string().typeError('Must be a string.')
         .required('Please enter meet address.'),
+    file: Yup.mixed()
+        .required("A file is required")
+        .test(
+            "fileSize",
+            "File too large",
+            value => value && value.size <= FILE_SIZE
+        )
+        .test(
+            "fileFormat",
+            "Unsupported Format",
+            value => value && SUPPORTED_FORMATS.includes(value.type)
+        ),
+    activities: Yup.array()
+        .min(3,"choose min 3 activities")
 });

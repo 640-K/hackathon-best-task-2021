@@ -10,7 +10,7 @@ import MeetCreate from './MeetCreate/MeetCreate'
 import {onAuthStateChanged} from "firebase/auth";
 import {auth} from "./Firebase/main";
 import Loader from "./loader"
-function App() {
+const App = () => {
     let [loader, setLoader] = useState(true);
     let [name, setName] = useState(false);
 
