@@ -47,7 +47,7 @@ const Navbar = ({name}) => {
                     {name /* isUserLoggedIn */ ?
                         <React.Fragment>
                             <li><NavLink exact to="/">Your Events</NavLink></li>
-                            <li><button style={{
+                            <li id="sign-out"><button style={{
                                 background: 'none',
                                 color: 'inherit',
                                 border: 'none',
