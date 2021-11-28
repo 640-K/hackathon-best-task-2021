@@ -1,8 +1,61 @@
-import React from "react"
-import {NavLink} from 'react-router-dom';
+import React, { useState, useEffect, setTimeout } from "react"
+import { NavLink } from 'react-router-dom';
+import logo from '../img/logo.svg'
+import './Navbar.css'
 
-const Navbar = () => (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+const Navbar = () => {
+    const [displayMenu, setDisplayMenu] = useState(false);
+    // const [delayId, setdelayId] = useState(0);
+
+    document.onscroll = () => {
+        if (window.pageYOffset >= document.getElementById("navbar").offsetTop) {
+            document.getElementById("navbar").classList.add("sticky")
+        } else {
+            document.getElementById("navbar").classList.remove("sticky");
+        }
+    }
+
+    useEffect(() => {
+        if (displayMenu) {
+            document.getElementById('main-menu').style.animation = 'slide-right';
+            document.getElementById('main-menu').style.animationDuration = '0.5s';
+            document.getElementById('main-menu').style.animationFillMode = 'both';
+            document.getElementById('main-menu').style.display = 'block';
+        } else {
+            document.getElementById('main-menu').style.animation = 'slide-left';
+            document.getElementById('main-menu').style.animationDuration = '0.5s';
+            document.getElementById('main-menu').style.animationFillMode = 'both';
+        }
+    }, [displayMenu])
+
+    return (
+        <React.Fragment>
+        <div id="main-menu" className="main-menu sticky" onMouseLeave={event => setDisplayMenu(false)}>
+            <h1>Menu</h1>
+            <ul>
+                <li>Home</li>
+                <li>Feed</li>
+            </ul>
+        </div>
+        <nav id="navbar" className="navbar">
+            <div className="navbar-content">
+                <div className="navbar-left">
+                    <img className="me-1" src={logo} style={{width: '50px'}}/>
+                    <h4 style={{color: 'white', marginLeft: '10px'}}>Meet-Up!</h4>
+                </div>
+                <button id="menu-button"
+                        onMouseEnter={event => setDisplayMenu(true)}
+                        className="nav-menu-button">
+                    Menu
+                </button>
+            </div>
+        </nav>
+        </React.Fragment>
+    );
+}
+
+/*(
+    <nav className="navbar navbar-expand-lg " style={{background: "#e3ccc8"}}>
         <div className="container-fluid">
             <i className="fas fa-hands-helping me-1" style={{color: "#007bff"}}/>
             Meet-Up!
@@ -30,6 +83,6 @@ const Navbar = () => (
             </div>
         </div>
     </nav>
-);
+);*/
 
 export default Navbar;

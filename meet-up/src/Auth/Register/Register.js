@@ -4,7 +4,7 @@ import { registerValidationsSchema } from '../../Forms/Validate'
 import { getInput } from '../../Forms/Input'
 
 const Register = props => (
-    <div className='col-lg-6 m-auto' style={{maxWidth: '500px'}}>
+    <div className='col-lg-6 m-auto' style={{maxWidth: '500px', height: '100%'}}>
         <Formik initialValues={{
             firstName: '',
             lastName: '',

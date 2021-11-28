@@ -1,0 +1,132 @@
+
+.navbar {
+  z-index: 1;
+
+  /* padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+  justify-content: space-between; */
+  padding: 0;
+  width: 100%;
+}
+
+.navbar-content {
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  /* justify-items: center; */
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbar-content h4 {
+  color: #000;
+}
+
+.main-menu {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  background-color: #4b24be;
+  width: 300px !important;
+  height: 100%;
+  right: 0;
+  color: #fff;
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.main-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.main-menu li {
+  font-size: 30px;
+  /* padding: 5px 20px; */
+  /* margin-right: 5px; */
+}
+
+@keyframes slide-right {
+  from {
+    display: block;
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-left {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+    display: none;
+  }
+}
+
+/* CSS */
+.nav-menu-button {
+  align-items: center;
+  /* background-color: #0A66C2; */
+  background-color: #fff;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.nav-menu-button:hover,
+.nav-menu-button:focus { 
+  background-color: #16437E;
+  color: #ffffff;
+}
+
+.nav-menu-button:active {
+  background: #09223b;
+  color: rgb(255, 255, 255, .7);
+}
+
+.nav-menu-button:disabled { 
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+}

@@ -3,8 +3,8 @@ import meeting from "../img/meeting.jpg"
 
 const Feed = () => {
     return (
-        <div className="container" style={{marginTop: "15px"}}>
-            <div className="card mb-3">
+        <div className="container" style={{marginTop: "15px", height: '1500px'}}>
+            <div className="card mb-3" style={{background: '#c3b4d9'}}>
                 <img className="card-img-top" src={meeting} alt="Card image cap"/>
                 <div className="card-body">
                     <h5 className="card-title">Card title</h5>
@@ -40,6 +40,7 @@ const Feed = () => {
             </div>
         </div>
     )
+    // return (<div style={{height: '1500px'}}></div>)
 }
 
 export default Feed;
