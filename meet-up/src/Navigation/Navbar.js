@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { NavLink } from 'react-router-dom';
+import {logOut, auth} from "../Firebase/main";
 import logo from '../img/logo.svg'
 import './Navbar.css'
 
-const Navbar = () => {
+const Navbar = ({name}) => {
     const [displayMenu, setDisplayMenu] = useState(false);
 
     document.onscroll = () => {
@@ -30,14 +31,36 @@ const Navbar = () => {
     return (
         <React.Fragment>
             <div id="main-menu" className="main-menu sticky" onMouseLeave={event => setDisplayMenu(false)}>
-                <h1>Menu</h1>
+                { name ? 
+                    <div className="d-flex justify-content-between align-items-center" style={{marginRight: '20px'}}>
+                        <h3 className="navbar-text">
+                            Hello, {name}
+                        </h3>
+                        <img src={auth.currentUser.photoURL} className="rounded-circle ms-2 me-2" style={{"height":"38.24px"}}/>
+                    </div> : <h1>Menu</h1>}
                 <ul>
                     <li><hr className='mb-4'/></li>
                     <li><NavLink exact to="/" /*className="btn btn-outline-dark"*/>Home</NavLink></li>
                     <li><NavLink exact to="/feed" /*className="btn btn-outline-dark"*/>Feed</NavLink></li>
                     <li><NavLink exact to="/create" /*className="btn btn-outline-dark"*/>Create Event</NavLink></li>
                     <li><hr className='mb-4'/></li>
-                    {false /* isUserLoggedIn */ ? <li>Hi, Max!</li> : <React.Fragment><li><NavLink exact to="/login">Login</NavLink></li><li><NavLink exact to="/register">Register</NavLink></li></React.Fragment>}
+                    {name /* isUserLoggedIn */ ?
+                        <React.Fragment>
+                            <li><button style={{
+                                background: 'none',
+                                color: 'inherit',
+                                border: 'none',
+                                padding: '0',
+                                font: 'inherit',
+                                cursor: 'pointer',
+                                outline: 'inherit'}}
+                            onClick={logOut} type="button">Log out</button></li>
+                        </React.Fragment>
+                        :
+                        <React.Fragment>
+                            <li><NavLink exact to="/login">Login</NavLink></li>
+                            <li><NavLink exact to="/register">Register</NavLink></li>
+                        </React.Fragment>}
                     <li></li>
                 </ul>
             </div>
@@ -57,36 +80,5 @@ const Navbar = () => {
         </React.Fragment>
     );
 }
-
-/*(
-    <nav className="navbar navbar-expand-lg " style={{background: "#e3ccc8"}}>
-        <div className="container-fluid">
-            <i className="fas fa-hands-helping me-1" style={{color: "#007bff"}}/>
-            Meet-Up!
-
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li className="nav-item">
-                        <NavLink exact to="/" className="nav-link">Home</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink exact to="/feed" className="nav-link">Feed</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink exact to="/create" className="nav-link">Create Meet</NavLink>
-                    </li>
-                </ul>
-                <ul className="navbar-nav ml-auto">
-                    <li className="nav-item me-2">
-                        <NavLink className="btn btn-outline-secondary" to="/login" type="button">Log in</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="btn btn-primary" to="/register" type="button">Register</NavLink>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-);*/
 
 export default Navbar;

@@ -13,7 +13,7 @@ export const registerValidationsSchema = Yup.object().shape({
         .required('Valid email is required.'),
     password: Yup.string()
         .typeError('Must be a string.')
-        /*.matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*?[0-9]){8,}$/, 'Must contain 8 characters: uppercase, lowercase and number')*/
+        .matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", 'Must contain 8 characters: uppercase, lowercase and number')
         .required('Please enter a password.'),
     confirmPassword: Yup.string()
         .typeError('Must be a string.')
@@ -25,13 +25,20 @@ export const registerValidationsSchema = Yup.object().shape({
 
 export const loginValidationsSchema = Yup.object().shape({
     email: Yup.string()
-        .email('Please enter a valid email address.')
         .typeError('Must be a string.')
+        .email('Please enter a valid email address.')
         .required('Valid email is required.'),
     password: Yup.string()
         .typeError('Must be a string.')
+        .matches('/^(?=.*[A-Z])(?=.*[a-z])(?=.*?[0-9]){8,}$/', 'Must contain 8 characters: uppercase, lowercase and number')
         .required('Please enter a password.'),
 })
+
+const FILE_SIZE = 1024 * 1024 * 4;
+const SUPPORTED_FORMATS = [
+    "image/jpeg",
+    "image/png"
+];
 
 export const createEventValidationsSchema = Yup.object().shape({
     meetName: Yup.string().typeError('Must be a string.')
@@ -40,4 +47,18 @@ export const createEventValidationsSchema = Yup.object().shape({
         .required('Please enter meet description.'),
     auto_address: Yup.string().typeError('Must be a string.')
         .required('Please enter meet address.'),
+    file: Yup.mixed()
+        .required("A file is required")
+        .test(
+            "fileSize",
+            "File too large",
+            value => value && value.size <= FILE_SIZE
+        )
+        .test(
+            "fileFormat",
+            "Unsupported Format",
+            value => value && SUPPORTED_FORMATS.includes(value.type)
+        ),
+    activities: Yup.array()
+        .min(3,"choose min 3 activities")
 });
