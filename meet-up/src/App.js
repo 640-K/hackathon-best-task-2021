@@ -10,16 +10,16 @@ import MeetCreate from './MeetCreate/MeetCreate'
 import {onAuthStateChanged} from "firebase/auth";
 import {auth, getTokens, app} from "./Firebase/main";
 import Loader from "./loader"
-function App() {
+function App({registerServiceWorker}) {
     let [loader, setLoader] = useState(true);
     let [name, setName] = useState(false);
 
     useEffect(() => {
         onAuthStateChanged(auth, user => {
             if (user) {
-                console.log(user)
                 setName(user.displayName)
                 setLoader(false)
+                registerServiceWorker()
 
             } else
                 setLoader(false)

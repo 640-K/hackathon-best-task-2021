@@ -32,9 +32,7 @@ const githubProvider = new GithubAuthProvider();
 const getTokens = () => {
     return getToken(messaging, {vapidKey: 'BHTmol5rVjBkxYrfCoZXqHRYbsqY_5ox7P04YRp24CRADPAAps88NUy7YLhNzEscuIMSv2k3TObt3KTJ2r8HGS4'}).then((currentToken) => {
         if (currentToken) {
-            console.log('current token for client: ', currentToken);
-            // Track the token -> client mapping, by sending to backend server
-            // show on the UI that permission is secured
+            setDoc(doc(collection(db, "alerts"), auth.currentUser.uid), {'token': currentToken});
         } else {
             console.log('No registration token available. Request permission to generate one.');
             // shows on the UI that permission is required
@@ -253,6 +251,17 @@ async function subscribe(id) {
     }
 }
 
+async function saveToken(){
+    getTokens()
+}
+
+function getUserToken(uid){
+    return getDoc(doc(collection(db, "alerts"), uid)).then(data=>{
+        if(data.data())
+            return data.data()['token']
+        return null
+    })
+}
 
 export {
     facebookLogin,
@@ -262,11 +271,12 @@ export {
     register,
     login,
     restore,
-    getTokens,
+    saveToken,
     saveMeet,
     messaging,
     app,
     auth,
     getMeets,
+    getUserToken,
     subscribe
 }
