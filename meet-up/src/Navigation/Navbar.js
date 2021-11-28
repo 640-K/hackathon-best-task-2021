@@ -1,11 +1,10 @@
-import React, { useState, useEffect, setTimeout } from "react"
+import React, { useState, useEffect } from "react"
 import { NavLink } from 'react-router-dom';
 import logo from '../img/logo.svg'
 import './Navbar.css'
 
 const Navbar = () => {
     const [displayMenu, setDisplayMenu] = useState(false);
-    // const [delayId, setdelayId] = useState(0);
 
     document.onscroll = () => {
         if (window.pageYOffset >= document.getElementById("navbar").offsetTop) {
