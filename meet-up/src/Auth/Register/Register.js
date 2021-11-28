@@ -24,16 +24,8 @@ const Register = props => (
                             {getInput('lastName', '', 'text', 'Last name', handleChange, handleBlur, values, errors, touched)}
                         </div>
                     </div>
-                    <div className='row'>
-                        <div className='col-lg-6 mb-3'>
-                            {getInput('email', '', 'email', 'Email', handleChange, handleBlur, values, errors, touched)}
-                        </div>
-                        <div className='col-lg-6 mb-3'>
-                            {getInput('phone', '', 'phone', 'Phone', handleChange, handleBlur, values, errors, touched)}
-                        </div>
-                    </div>
                     <div className='mb-3'>
-                        {getInput('state', '', 'text', 'State', handleChange, handleBlur, values, errors, touched)}
+                        {getInput('email', '', 'email', 'Email', handleChange, handleBlur, values, errors, touched)}
                     </div>
                     <div className='row'>
                         <div className='col-lg-6 mb-3'>
