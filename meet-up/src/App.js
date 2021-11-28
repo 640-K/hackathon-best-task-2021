@@ -6,7 +6,7 @@ import Feed from "./Feed/Feed"
 import Footer from "./Navigation/Footer"
 import Login from "./Auth/Login/Login"
 import Register from "./Auth/Register/Register"
-import MeetCreate from './MeetCreate/MeetCreate'
+import CreateEvent from './CreateEvent/CreateEvent'
 import './App.css'
 
 const App = () => {
@@ -18,7 +18,7 @@ const App = () => {
                 <Route exact path="/feed" element={<Feed/>}/>
                 <Route exact path="/login" element={<Login/>}/>
                 <Route exact path="/register" element={<Register/>}/>
-                <Route exact path="/create" element={<MeetCreate/>}/>
+                <Route exact path="/create" element={<CreateEvent/>}/>
             </Routes>
             <Footer/>
         </Router>

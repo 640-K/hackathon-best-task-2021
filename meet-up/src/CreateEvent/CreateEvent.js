@@ -1,16 +1,17 @@
 import React from 'react'
 import { Formik } from 'formik'
 import { getInput } from '../Forms/Input'
-import { createMeetValidationsSchema } from '../Forms/Validate'
+import { createEventValidationsSchema } from '../Forms/Validate'
 import location from './Location'
+import './CreateEvent.css'
 
-const MeetCreate = () => (
-    <div className="col-lg-6 m-auto" style={{maxWidth: '500px'}}>
+const CreateEvent = () => (
+    <div id="create-event" className="col-lg-6" style={{maxWidth: '300px', height: '100%', margin: '15% auto'}}>
         <Formik initialValues={{
             meetName: '',
             description: '',
             auto_address: ''
-        }} validateOnBlur validationSchema={createMeetValidationsSchema} onSubmit={values => console.log(values)}>
+        }} validateOnBlur validationSchema={createEventValidationsSchema} onSubmit={values => console.log(values)}>
             {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty,setFieldValue}) => (
                 <div>
                     <h1 className="text-center">Create Event</h1>
@@ -33,4 +34,4 @@ const MeetCreate = () => (
     </div>
 );
 
-export default MeetCreate;
+export default CreateEvent;

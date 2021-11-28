@@ -33,7 +33,7 @@ export const loginValidationsSchema = Yup.object().shape({
         .required('Please enter a password.'),
 })
 
-export const createMeetValidationsSchema = Yup.object().shape({
+export const createEventValidationsSchema = Yup.object().shape({
     meetName: Yup.string().typeError('Must be a string.')
         .required('Valid first Meet Name is required.'),
     description: Yup.string().typeError('Must be a string.')

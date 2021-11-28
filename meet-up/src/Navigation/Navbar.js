@@ -32,8 +32,13 @@ const Navbar = () => {
             <div id="main-menu" className="main-menu sticky" onMouseLeave={event => setDisplayMenu(false)}>
                 <h1>Menu</h1>
                 <ul>
+                    <li><hr className='mb-4'/></li>
                     <li><NavLink exact to="/" /*className="btn btn-outline-dark"*/>Home</NavLink></li>
                     <li><NavLink exact to="/feed" /*className="btn btn-outline-dark"*/>Feed</NavLink></li>
+                    <li><NavLink exact to="/create" /*className="btn btn-outline-dark"*/>Create Event</NavLink></li>
+                    <li><hr className='mb-4'/></li>
+                    {false /* isUserLoggedIn */ ? <li>Hi, Max!</li> : <React.Fragment><li><NavLink exact to="/login">Login</NavLink></li><li><NavLink exact to="/register">Register</NavLink></li></React.Fragment>}
+                    <li></li>
                 </ul>
             </div>
             <nav id="navbar" className="navbar">

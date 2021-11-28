@@ -1,0 +1,27 @@
+
+.event {
+  color: black;
+  background: white;
+}
+
+.event-body {
+  /* display: flex;
+  flex-direction: row; */
+  /* justify-content:; */
+}
+
+.activities-list {
+  /* width: 25%; */
+}
+
+@media screen and (max-width: 768px) {
+
+  .event-body {
+    justify-content: flex;
+    flex-direction: column;
+  }
+
+  .activities-list {
+    width: 100%;
+  }
+}
