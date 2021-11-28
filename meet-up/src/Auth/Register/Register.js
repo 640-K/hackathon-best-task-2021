@@ -9,7 +9,6 @@ const Register = props => (
             firstName: '',
             lastName: '',
             email: '',
-            phone: '',
             password: '',
             confirmPassword: ''
         }} validateOnBlur validationSchema={registerValidationsSchema} onSubmit={values => console.log(values)}>
