@@ -2,7 +2,7 @@
 export const getInput = (id, text, type, placeholder, handleChange, handleBlur, values, errors, touched) => (
     <div>
         {text !== null && text.length ? <label htmlFor={id}>{text}</label> : null}
-        <input  id={id} 
+        <input  id={id}
                 type={type}
                 className={"form-control " + (touched[id] && errors[id] ? 'is-invalid' : touched[id] ? 'is-valid' : '')}
                 value={values[id]}

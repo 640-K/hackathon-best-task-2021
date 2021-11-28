@@ -1,7 +1,7 @@
 import React from "react";
 
 const Footer = () => (
-    <footer className="text-center text-lg-start bg-light text-muted" style={{marginTop: '500px'}}>
+    <footer id="footer" className="text-center text-lg-start " style={{color: "white", backgroundColor: "#742cc7"/*, marginTop: '100px'*/}}>
         <section
             className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
             <div className="me-5 d-none d-lg-block">

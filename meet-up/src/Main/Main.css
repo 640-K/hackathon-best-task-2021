@@ -1,0 +1,32 @@
+
+#about-section {
+  flex-direction: row;
+  justify-content: space-around;
+  padding-top: 70px;
+  padding-bottom: 50px;
+}
+
+#about-section h4 {
+  padding-top: 60px;
+  width: 25%;
+}
+
+/* #about-section + #footer {
+  position: fixed;
+  bottom: 0;
+} */
+
+@media screen and (max-width: 768px) {
+  #about-section {
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding-top: 0;
+  }
+
+  #about-section h4 {
+    width: 80%;
+    padding-bottom: 40px;
+  }
+}

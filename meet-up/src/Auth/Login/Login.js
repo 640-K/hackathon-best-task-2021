@@ -2,17 +2,18 @@ import React from 'react'
 import { Formik } from 'formik'
 import { loginValidationsSchema } from '../../Forms/Validate'
 import { getInput } from '../../Forms/Input'
+import './Login.css'
 
 const Login = props => {
     return (
-        <div className='d-flex justify-content-center'>
+        <div id="login" className='col-lg-6' style={{maxWidth: '300px', height: '100%', margin: '15% auto'}}>
             <Formik initialValues={{
                 email: '',
                 password: ''
             }} validateOnBlur validationSchema={loginValidationsSchema} onSubmit={values => console.log(values)}>
                 {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty}) => (
-                    <div className="">
-                        <h1 className='text-center'>Login</h1>
+                    <div>
+                        <h1 className='text-center' style={{marginBottom: '25px'}}>Login</h1>
                         <div className='mb-3'>
                             {getInput('email', '', 'email', 'Email', handleChange, handleBlur, values, errors, touched)}
                         </div>

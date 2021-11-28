@@ -29,26 +29,26 @@ const Navbar = () => {
 
     return (
         <React.Fragment>
-        <div id="main-menu" className="main-menu sticky" onMouseLeave={event => setDisplayMenu(false)}>
-            <h1>Menu</h1>
-            <ul>
-                <li>Home</li>
-                <li>Feed</li>
-            </ul>
-        </div>
-        <nav id="navbar" className="navbar">
-            <div className="navbar-content">
-                <div className="navbar-left">
-                    <img className="me-1" src={logo} style={{width: '50px'}}/>
-                    <h4 style={{color: 'white', marginLeft: '10px'}}>Meet-Up!</h4>
-                </div>
-                <button id="menu-button"
-                        onMouseEnter={event => setDisplayMenu(true)}
-                        className="nav-menu-button">
-                    Menu
-                </button>
+            <div id="main-menu" className="main-menu sticky" onMouseLeave={event => setDisplayMenu(false)}>
+                <h1>Menu</h1>
+                <ul>
+                    <li><NavLink exact to="/" /*className="btn btn-outline-dark"*/>Home</NavLink></li>
+                    <li><NavLink exact to="/feed" /*className="btn btn-outline-dark"*/>Feed</NavLink></li>
+                </ul>
             </div>
-        </nav>
+            <nav id="navbar" className="navbar">
+                <div className="navbar-content">
+                    <div className="navbar-left">
+                        <img className="me-1" src={logo} style={{width: '50px'}}/>
+                        <h4 style={{color: 'white', marginLeft: '10px'}}>Meet-Up!</h4>
+                    </div>
+                    <button id="menu-button"
+                            onMouseEnter={event => setDisplayMenu(true)}
+                            className="nav-menu-button">
+                        Menu
+                    </button>
+                </div>
+            </nav>
         </React.Fragment>
     );
 }
