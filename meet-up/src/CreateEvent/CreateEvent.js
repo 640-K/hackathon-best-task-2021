@@ -27,6 +27,7 @@ const CreateEvent = () => {
                 meetName: '',
                 description: '',
                 auto_address: '',
+                date: '',
                 file: null,
                 activities: act,
             }} validateOnBlur validationSchema={createEventValidationsSchema} onSubmit={values => {saveMeet(values); navigate('/feed', {replace: false})}}>
@@ -41,6 +42,9 @@ const CreateEvent = () => {
                         </div>
                         <div className="mb-3">
                             {getInput("description", "", "text", "Description", handleChange, handleBlur, values, errors, touched)}
+                        </div>
+                        <div className="mb-3">
+                            {getInput("date", "", "text", "Date", handleChange, handleBlur, values, errors, touched)}
                         </div>
                         <div className="mb-3">
                             {picture("file",handleChange, handleBlur, values, errors, touched, setFieldValue)}

@@ -50,6 +50,9 @@ export const createEventValidationsSchema = Yup.object().shape({
     auto_address: Yup.string()
         .typeError('Must be a string.')
         .required('Please enter meet address.'),
+    date: Yup.date()
+        .typeError('Must be a date')
+        .required('Please enter a date.'),
     file: Yup.mixed()
         .required("A file is required")
         .test("fileSize", "File too large", value => value && value.size <= FILE_SIZE)

@@ -21,7 +21,7 @@ const Event = props => {
           <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
       </div>
       <div id="accordion">
-          <div className="collapse" id={"collapse"+props.key}
+          <div className="collapse" id={"collapse"+props.id}
               data-parent="#accordion">
               <div className="card-body event-body row">
                     <div className="activities col">
@@ -33,15 +33,16 @@ const Event = props => {
                     <div className="col">
                         <h4>Info:</h4>
                         <p><b>Address</b>: {props.event.auto_address}</p>
-                        <p><b>Date</b>: </p>
+                        <p><b>Date</b>: {props.event.date}</p>
+                        <p><b>How many people</b>: {props.event.who.length}</p>
                     </div>
               </div>
           </div>
           <div className="text-center col">
               <p>
                   <button className="btn btn-outline-primary" type="button" data-bs-toggle="collapse"
-                          data-bs-target={"#collapse" + props.key} aria-expanded="false"
-                          aria-controls={"collapse" + props.key}>
+                          data-bs-target={"#collapse" + props.id} aria-expanded="false"
+                          aria-controls={"collapse" + props.id}>
                       Show More
                   </button>
               </p>

@@ -40,7 +40,7 @@ const Feed = () => {
             </div>
             <div>
                 {events.map((event, key) => 
-                    <Event event={event}/>
+                    <Event event={event} key={event.id}/>
                 )}
             </div>
         </div>
