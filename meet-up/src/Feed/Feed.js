@@ -9,6 +9,13 @@ import data from '../data/config.json'
 const Feed = () => {
     const [address, setAddress] = useState('Lviv, Ukraine');
     const [events, setEvents] = useState([]);
+    // const [id, setId] = useState(0);
+
+    // const getNewId = () => {
+    //     const newId = id;
+    //     setId(id+1);
+    //     return newId;
+    // };
 
     const updateEvennts = () => getMeets(address).then(value => {setEvents(value); console.log(value)});
 
@@ -39,9 +46,11 @@ const Feed = () => {
                 </Formik>
             </div>
             <div>
-                {events.map((event, key) => 
-                    <Event event={event} key={event.id}/>
-                )}
+                <ul style={{listStyle: 'none'}}>
+                    {events.map((event, key) => 
+                        <li key={event.id}><Event event={event}/></li>
+                    )}
+                </ul>
             </div>
         </div>
     )

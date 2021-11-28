@@ -1,6 +1,8 @@
 import React from "react"
 import './Event.css'
 import {subscribe} from "../Firebase/main";
+
+
 /*
 {
     "meetName": "erger",
@@ -21,7 +23,7 @@ const Event = props => {
           <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
       </div>
       <div id="accordion">
-          <div className="collapse" id={"collapse"+props.id}
+          <div className="collapse" id={"collapse"+props.event.id}
               data-parent="#accordion">
               <div className="card-body event-body row">
                     <div className="activities col">
@@ -41,8 +43,8 @@ const Event = props => {
           <div className="text-center col">
               <p>
                   <button className="btn btn-outline-primary" type="button" data-bs-toggle="collapse"
-                          data-bs-target={"#collapse" + props.id} aria-expanded="false"
-                          aria-controls={"collapse" + props.id}>
+                          data-bs-target={"#collapse" + props.event.id} aria-expanded="false"
+                          aria-controls={"collapse" + props.event.id}>
                       Show More
                   </button>
                   <button className="btn btn-outline-primary ms-3" onClick={()=>{subscribe(props.event.id)}} type="button">
