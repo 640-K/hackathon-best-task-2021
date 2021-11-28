@@ -12,7 +12,7 @@ import Register from "./Auth/Register/Register"
 import CreateEvent from './CreateEvent/CreateEvent'
 import './App.css'
 
-const App = () => {
+const App = ({registerServiceWorker}) => {
     let [loader, setLoader] = useState(true);
     let [name, setName] = useState(false);
 

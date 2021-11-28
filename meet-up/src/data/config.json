@@ -2,6 +2,7 @@
   "apiKeys": {
     "googleMaps": "AIzaSyBYk_tBce7iUGtPHfh03AmWCw9kktWvVuo"
   },
+  "backendUrl": "http://localhost:3001",
   "firebaseConfig": {
     "apiKey": "AIzaSyBgIWNsSpP41ec_5pDQ-AAAINGS26rJ4h8",
     "authDomain": "meet-up-hackathon.firebaseapp.com",

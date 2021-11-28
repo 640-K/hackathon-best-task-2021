@@ -3,7 +3,6 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { Formik } from 'formik'
 import { getInput } from '../Forms/Input'
 import { createEventValidationsSchema } from '../Forms/Validate'
-import {saveMeet, getMeets} from '../Firebase/main'
 import location from './Location'
 import picture from './Picture'
 import './CreateEvent.css'
@@ -14,9 +13,9 @@ const CreateEvent = () => {
 
     const navigate = useNavigate();
 
-    getMeets('Львів, Львівська область, Україна, 79000').then(d => {
-        console.log(d)
-    })
+    // getMeets('Львів, Львівська область, Україна, 79000').then(d => {
+    //     console.log(d)
+    // })
 
     subscribe('c7d153c4edaba3424a51f1c66dcf0bb4').then(data => {
         console.log(data)

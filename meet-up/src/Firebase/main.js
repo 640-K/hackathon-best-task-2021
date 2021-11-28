@@ -16,8 +16,6 @@ import {
 import {getMessaging, getToken, onMessage,} from 'firebase/messaging';
 import firebaseConfig from "./config";
 
-import firebaseConfig from "./config"
-
 let CryptoJS = require("crypto-js");
 
 const app = initializeApp(firebaseConfig);

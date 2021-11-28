@@ -1,21 +1,47 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
+import { Formik } from 'formik'
 import Event from './Event'
-
-import meeting from "../img/meeting.jpg"
+import { addressValidationsSchema } from '../Forms/Validate'
+import location from '../CreateEvent/Location'
+import { getMeets } from '../Firebase/main'
+import data from '../data/config.json'
 
 const Feed = () => {
+    const [address, setAddress] = useState('Lviv, Ukraine');
+    const [events, setEvents] = useState([]);
+
+    const updateEvennts = () => getMeets(address).then(value => {setEvents(value); console.log(value)});
+
+    useEffect(() => {
+        updateEvennts()
+    }, [address])
+
     return (
-        <div className="container" style={{marginTop: "15px"}}>
-            
+        <div className="container" style={{marginTop: "15px", minHeight: '1000px'}}>
+            <div style={{marginBottom: '40px'}}>
+                <Formik initialValues={{
+                    auto_address: ''
+                }} validateOnBlur validationSchema={addressValidationsSchema} onSubmit={ values => {
+                    console.log(address);
+                    setAddress(values.auto_address);
+                }}>
+                    {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty, setFieldValue}) => (
+                        <div className="d-flex justify-content-center text-center">
+                            <div className='col-6'>
+                                {location("auto_address", handleChange, handleBlur, values, errors, touched, setFieldValue)}
+                            </div>
+                            {/* <hr className='mb-4 mt-4'/> */}
+                            <div className='col-2'>
+                                <button className='btn btn-primary btn-md w-75' type='submit' onClick={handleSubmit}>Search</button>
+                            </div>
+                        </div>
+                    )}
+                </Formik>
+            </div>
             <div>
-                <Event event={{
-                    "meetName": "Beer",
-                    "description": "Lets go drink beer",
-                    "auto_address": "Ерфурт, Німеччина",
-                    "file": "https://firebasestorage.googleapis.com/v0/b/meet-up-hackathon.appspot.com/o/img%2Fd41d8cd98f00b204e9800998ecf8427e.jpeg?alt=media&token=0cc8739a-4ab1-42e3-b5bb-f5d8dd2de00e",
-                    "activities": ["Board Games","Reading","Surf The Web","Meditation"],
-                    "user":"EDa73GB3f4V8WZQgSZPPkWjb7OA3"
-                }}/>
+                {events.map((event, key) => 
+                    <Event event={event}/>
+                )}
             </div>
         </div>
     )

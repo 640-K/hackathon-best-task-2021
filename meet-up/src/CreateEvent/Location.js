@@ -14,7 +14,8 @@ const location = (id, handleChange, handleBlur, values, errors, touched, setFiel
             onBlur={handleBlur}
             apiKey={config.apiKeys.googleMaps}
             onPlaceSelected={place => setFieldValue(id, place.formatted_address)}
-            onChange={handleChange}/>
+            onChange={handleChange}
+            language="en"/>
         {touched[id] && errors[id] && <div className="invalid-feedback">{errors[id]}</div>}
     </React.Fragment>
 );

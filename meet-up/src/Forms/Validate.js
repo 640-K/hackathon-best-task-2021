@@ -42,7 +42,7 @@ const SUPPORTED_FORMATS = [
 
 export const createEventValidationsSchema = Yup.object().shape({
     meetName: Yup.string()
-        .defaulttypeError('Must be a string.')
+        .typeError('Must be a string.')
         .required('Valid first Meet Name is required.'),
     description: Yup.string()
         .typeError('Must be a string.')
