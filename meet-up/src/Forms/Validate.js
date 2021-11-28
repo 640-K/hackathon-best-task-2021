@@ -60,4 +60,6 @@ export const createMeetValidationsSchema = Yup.object().shape({
             "Unsupported Format",
             value => value && SUPPORTED_FORMATS.includes(value.type)
         ),
+    activities: Yup.array()
+        .min(3,"choose min 3 activities")
 });
