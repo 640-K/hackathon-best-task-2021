@@ -10,7 +10,11 @@ import MeetCreate from './MeetCreate/MeetCreate'
 import {onAuthStateChanged} from "firebase/auth";
 import {auth, getTokens, app} from "./Firebase/main";
 import Loader from "./loader"
-const App = ({registerServiceWorker}) => {
+<<<<<<< HEAD
+const App = () => {
+=======
+function App({registerServiceWorker}) {
+>>>>>>> origin/firebase-update
     let [loader, setLoader] = useState(true);
     let [name, setName] = useState(false);
 
