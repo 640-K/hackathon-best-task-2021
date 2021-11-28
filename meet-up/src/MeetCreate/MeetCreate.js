@@ -4,7 +4,7 @@ import { getInput } from '../Forms/Input'
 import { createMeetValidationsSchema } from '../Forms/Validate'
 import location from './Location'
 import picture from './Picture'
-import {saveMeet, getMeets} from '../Firebase/main'
+import {saveMeet, getMeets, subscribe} from '../Firebase/main'
 
 
 const MeetCreate = () => {
@@ -13,6 +13,10 @@ const MeetCreate = () => {
     getMeets('Львів, Львівська область, Україна, 79000').then(d=>{
         console.log(d)
     })
+
+    subscribe('c7d153c4edaba3424a51f1c66dcf0bb4').then(data=> {
+            console.log(data)
+        })
 
     return(
         <div className="col-lg-6 m-auto" style={{maxWidth: '500px'}}>
